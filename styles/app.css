@@ -2,13 +2,14 @@
 * { box-sizing: border-box; }
 
 :root {
+  --white-smoke: whitesmoke;
   --purple-light-1: #FBFAFB;
-  --purple-light-2: #EEEAF2;
-  --purple-medium-1: #AA83C8;
-  --purple-medium-2: #8B48BF;
-  --purple-medium-3: #5C218A;
-  --purple-dark-1: #3E0F64;
-  --purple-dark-2: #2A0646;
+  --purple-light-2: #bd3f3f;
+  --purple-medium-1: #864b34;
+  --purple-medium-2: #381f27;
+  --purple-medium-3: #110f6e;
+  --purple-dark-1: #b10511;
+  --purple-dark-2: #961313;
 
   --yellow: #EECC75;
   --green: #CAD297;
@@ -26,12 +27,11 @@
 }
 
 html {
-  background-color: var(--purple-medium-3);
+  background-color: #141414;
 }
 
 body {
-  background-color: var(--purple-light-1);
-  color: var(--purple-dark-2);
+  background-color: #141414;
   font-family: var(--font-family-text);
   font-weight: var(--font-weight-text1);
   font-size: 16px;
@@ -42,11 +42,11 @@ body {
 h1, h2, h3 {
   margin: 0;
   padding: 0;
+  color: var(--white-smoke);
 }
 
 h1, h2 {
   font-size: 24px;
-  color: var(--purple-dark-2);
   font-family: var(--font-family-titles);
   font-weight: var(--font-weight-title1);
   margin: 0;
@@ -55,18 +55,16 @@ h1, h2 {
 
 h2 {
   font-size: 18px;
-  color: var(--purple-dark-1);
   font-weight: var(--font-weight-title2);
 }
 
 h3 {
-  color: var(--purple-dark-2);
   font-weight: var(--font-weight-text2);
   font-size: 16px;
 }
 
 input {
-  background-color: var(--purple-light-2);
+  background-color: var(--white-smoke);
   color: var(--purple-medium-2);
   border: none;
   font-size: 18px;
@@ -81,8 +79,7 @@ input::placeholder {
 button {
   background-color: var(--purple-dark-1);
   border: none;
-  color: var(--purple-light-2);
-  font-weight: var(--font-weight-text2);
+  color: var(--white-smoke);
   font-size: 14px;
   cursor: pointer;
 }
@@ -93,7 +90,7 @@ button {
   padding: 0 24px;
 }
 
-.trendingPreview-container, .categoriesPreview-container, .liked-container, footer {
+.trendingPreview-container, .categoriesPreview-container, .liked-container {
   margin-top: 48px;
 }
 
@@ -182,13 +179,12 @@ button {
 }
 
 .header-container--long {
-  background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
   background-size: cover !important;
   height: 480px;
   position: fixed;
   top: 0;
   width: 100%;
+  position: relative;
 }
 
 .header-container--categoryView {
@@ -230,6 +226,19 @@ button {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
+
+.form-select {
+  display: inline-block;
+  width: 110px;
+  height: 35px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50px;
+  padding-bottom: 5px;
+  
+}
+
 
 
 /* Trending */
@@ -321,14 +330,15 @@ button {
 .genericList-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   padding: 32px 24px;
 }
 
 .genericList-container .movie-container {
   display: inline-block;
-  width: 47.5%;
+  width: 30%;
+  margin-bottom: 20px;
 }
 
 .genericList-container .movie-img {
@@ -338,13 +348,14 @@ button {
 
 /* Movie Detail */
 .movieDetail-container {
+  width: 100%;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding: 32px 24px;
   margin-top: 403px;
   z-index: 1;
   position: absolute;
-  background-color: var(--purple-light-1);
+  background-color: #141414;
 }
 
 .movieDetail-title {
@@ -359,6 +370,7 @@ button {
   text-align: right;
   width: 18%;
   font-weight: var(--font-weight-title2);
+  color: var(--white-smoke);
 }
 .movieDetail-score::before {
   content: '★';
@@ -368,6 +380,7 @@ button {
 
 .movieDetail-description {
   margin: 0 0 24px 0;
+  color: var(--white-smoke);
 }
 
 .relatedMovies-container {
@@ -415,8 +428,8 @@ button {
 
 /* Footer */
 footer {
-  background-color: var(--purple-medium-3);
-  color: var(--purple-light-2);
+  background-color: #141414;
+  color: var(--white-smoke);
   text-align: center;
   height: 48px;
   display: flex;
@@ -440,3 +453,24 @@ footer {
     opacity: 0%;
   }
 }
+
+@media (min-width: 768px){
+  .header-container--long{
+    width: 75%;
+    position: static;
+    display: block;
+    margin: auto;
+  }
+
+  .movieDetail-container {
+    width: 100%;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 32px 24px;
+    margin-top: 0px;
+    z-index: 1;
+    
+    background-color: #141414;
+  }
+
+  }

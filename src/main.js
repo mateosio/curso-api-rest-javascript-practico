@@ -1,19 +1,10 @@
-const API = axios.create({
-    baseURL: "https://api.themoviedb.org/3/",
-    headers: {
-        "Content-Type": "application/json;charset=utf-8",
-    },
-    params: {
-        "api_key": API_KEY,
-    },
-});
-
 //Util
 const lazyLoader = new IntersectionObserver((entries)=>{
     entries.forEach((entry)=>{
         if(entry.isIntersecting){
            const Url = entry.target.getAttribute("data-img");
-           entry.target.setAttribute("src", Url);  
+           entry.target.setAttribute("src", Url);
+           lazyLoader.unobserve(entry.target);
         }
     })
 });
@@ -49,7 +40,7 @@ function createMovie(movies, container, {lazyLoad = false, clean = true}={}) {
     };
 
     movies.forEach((movie)=>{
-
+        
         const movieContainer = document.createElement("div");
         movieContainer.classList.add("movie-container");
                 
@@ -120,7 +111,13 @@ function createCategories(categories, container) {
 
 //Llamados a la API.
 async function getTrendingMoviesPreview (){
-    const { data } = await API(`trending/movie/day`);
+    const { data } = await API(`trending/movie/day`, {
+        params: {
+        "api_key": API_KEY,
+        "language": lang
+        
+    },
+    });
     const movies = data.results;
 
     createMovie(movies, trendingMoviesPreviewList, true);
@@ -129,7 +126,13 @@ async function getTrendingMoviesPreview (){
 };
 
 async function getCategoriesPreview (){
-    const { data } = await API(`genre/movie/list`);
+    const { data } = await API(`genre/movie/list`, {
+        params: {
+            "api_key": API_KEY,
+            "language": lang
+            
+        },
+    });
     
     const generos = data.genres;
 
@@ -145,7 +148,7 @@ async function getMoviesByCategory (id){
         },
     });
     const movies = data.results;
-
+    
     createMovie(movies, genericSection, true);
 
     console.log({data, movies});
@@ -166,7 +169,13 @@ async function getMoviesBySearch (query){
 };
 
 async function getTrendingMovies (){
-    const { data } = await API(`trending/movie/day`);
+    const { data } = await API(`trending/movie/day`, {
+        params: {
+            "api_key": API_KEY,
+            "language": lang
+            
+        },
+    });
     const movies = data.results;
 
     maxPage = data.total_pages;
@@ -283,3 +292,4 @@ function getLikedMovies(){
     
     createMovie(moviesArray, likedMovieListArticle, {lazyLoad: true, clean: true});
 };
+

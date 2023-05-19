@@ -1,6 +1,42 @@
- let page = 1;
- let maxPage;
- let scrollinfinite;
+let page = 1;
+let maxPage;
+let scrollinfinite;
+let lang;
+
+//Lenguaje
+const lenguaje = document.querySelector(".form-select");
+lenguaje.addEventListener("change", language);
+
+function language() {
+    lang = lenguaje.value;
+    console.log(lang);
+    if (lang == "es") {
+        document.querySelector(".trendingPreview-title").textContent = "Tendencia";
+        document.querySelector(".categoriesPreview-title").textContent = "Categorias";
+        trendingBtn.textContent = "Ver más";
+    }else if (lang == "en"){
+        document.querySelector(".trendingPreview-title").textContent = "Trending";
+        document.querySelector(".categoriesPreview-title").textContent = "Categories";
+        trendingBtn.textContent = "See more";
+    }else{
+        document.querySelector(".trendingPreview-title").textContent = "Tendance";
+        document.querySelector(".categoriesPreview-title").textContent = "Catégories";
+        trendingBtn.textContent = "Voir plus";
+    }
+    homePage();
+};
+//Api
+const API = axios.create({
+    baseURL: "https://api.themoviedb.org/3/",
+    headers: {
+        "Content-Type": "application/json;charset=utf-8",
+    },
+    params: {
+        "api_key": API_KEY,
+        "language": lang
+        
+    },
+});
 
 searchFormBtn.addEventListener("click", ()=>{
     location.hash = `#search=${searchFormInput.value}`;
@@ -133,6 +169,7 @@ function movieDetailsPage(){
     likedMoviesSection.classList.add("inactive");
     genericSection.classList.add("inactive");
     movieDetailSection.classList.remove("inactive");
+    footer.classList.add("inactive");
 
    
     let [ , movieId] = location.hash.split("=");
@@ -187,5 +224,5 @@ function trendPage(){
     headerCategoryTitle.innerHTML = "Tendencias";
     
     getTrendingMovies();
-    scrollinfinite = getPaginetedTrending;
+    scrollinfinite = getPaginetedTrending();
 };
