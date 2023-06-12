@@ -120,7 +120,7 @@ async function getTrendingMoviesPreview (){
     });
     const movies = data.results;
 
-    createMovie(movies, trendingMoviesPreviewList, true);
+    createMovie(movies, trendingMoviesPreviewList, {lazyLoad : true});
 
     console.log({data, movies});
 };
@@ -149,7 +149,7 @@ async function getMoviesByCategory (id){
     });
     const movies = data.results;
     
-    createMovie(movies, genericSection, true);
+    createMovie(movies, genericSection, {lazyLoad : true});
 
     console.log({data, movies});
 };
@@ -163,7 +163,7 @@ async function getMoviesBySearch (query){
     const movies = data.results;
     maxPage = data.total_pages;
 
-    createMovie(movies, genericSection);
+    createMovie(movies, genericSection, {lazyLoad : true});
 
     console.log({data, movies});
 };
@@ -213,7 +213,7 @@ async function getSimilarMoviesId(id) {
      const {data} = await API(`movie/${id}/similar`)
     const similarMovies = data.results;
 
-    createMovie(similarMovies, relatedMoviesContainer);
+    createMovie(similarMovies, relatedMoviesContainer, {lazyLoad : true});
  };
 
 function getPaginetedSearch (query){
@@ -289,6 +289,7 @@ function getLikedMovies(){
     const likedMovies = likedMovieList();
     console.log(likedMovies);
     const moviesArray = Object.values(likedMovies);
+    console.log(moviesArray);
     
     createMovie(moviesArray, likedMovieListArticle, {lazyLoad: true, clean: true});
 };
