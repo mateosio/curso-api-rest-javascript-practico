@@ -25,6 +25,7 @@ function language() {
     }
     homePage();
 };
+
 //Api
 const API = axios.create({
     baseURL: "https://api.themoviedb.org/3/",
@@ -224,5 +225,5 @@ function trendPage(){
     headerCategoryTitle.innerHTML = "Tendencias";
     
     getTrendingMovies();
-    scrollinfinite = getPaginetedTrending();
+    scrollinfinite = getPaginetedTrending;
 };

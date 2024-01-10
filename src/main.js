@@ -113,9 +113,7 @@ function createCategories(categories, container) {
 async function getTrendingMoviesPreview (){
     const { data } = await API(`trending/movie/day`, {
         params: {
-        "api_key": API_KEY,
         "language": lang
-        
     },
     });
     const movies = data.results;
@@ -128,9 +126,7 @@ async function getTrendingMoviesPreview (){
 async function getCategoriesPreview (){
     const { data } = await API(`genre/movie/list`, {
         params: {
-            "api_key": API_KEY,
-            "language": lang
-            
+         "language": lang
         },
     });
     
@@ -228,7 +224,7 @@ function getPaginetedSearch (query){
             const { data } = await API(`search/movie`, {
                 params: {
                 query,
-                 page,
+                page,
                 },
             });
             
