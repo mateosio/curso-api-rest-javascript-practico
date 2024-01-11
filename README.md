@@ -1,2 +1,4 @@
-# curso-api-rest-javascript-practico
-Curso practico de consumo de API REST
+# Aplicación de peliculas con javascript.
+Aplicación con consumo de API REST, js y html.
+Para acceder a la visualización de la página, entra al siguiente link:
+ https://mateosio.github.io/curso-api-rest-javascript-practico/
